@@ -21,3 +21,62 @@ Sovellus sisältää seuraavia ominaisuuksia:
   - Poistaa aihealueita
   - Muokata ja poistaa kaikkia viestiketjuja ja viestejä
   - Luoda rajattuja aihealueita, joihin vain tietyllä käyttäjäryhmällä on pääsy
+
+## Sovelluksen nykyinen tilanne
+
+- Käyttäjä pystyy etusivulla näkemään lähetetyt viestit ja niiden määrän
+- Käyttäjä pystyy luomaan uuden tunnuksen, joka koostuu käyttäjätunnuksesta ja salasanasta. Tunnus tallennetaan SQL tietokantaan
+- Käyttäjä pystyy kirjautumaan jo olemassa olevilla tunnuksilla
+- Jos annettu käyttäjätunnus tai salasana ei täsmää tietokannassa oleviin tietoihin, niin sivu antaa virheen
+- Mikäli käyttäjä yrittää luoda käyttäjätunnuksen joka löytyy jo tietokannasta, niin sivu antaa virheen
+- Tietokannassa on taulut users ja messages, joihin tallennetaan ja joista haetaan tietoa yllä listattujen toimintojen yhteydessä
+
+## Jatkokehitys
+
+- Lisätä tauluja tietokantaan
+- Tehdä tarkastuksia ja varmennuksia verkkosivujen kenttiin, että mitä tietoa käyttäjä voi niihin syöttää
+- Lisätä tietoa viesteihin, kuten lähettäjä ja aika
+- Parantaa sivujen ulkoasua
+- Luoda hakutoiminto
+- Luoda eri keskustelualueita
+- Luoda pääkäyttäjälle oikeudet muokata jo olemassa olevia tietoja
+
+## Kuinka käyttää ja testata sovellusta komentoriviltä
+
+**1)** Kloonaa repositorio omalle koneellesi
+
+**2)** Luo juurikansioon *.env*-tiedosto ja tallenna sinne seuraava sisältö: 
+```bash
+DATABASE_URL=<tietokannan-paikallinen-osoite>
+SECRET_KEY=<salainen-avain>
+```
+
+**3)** Luo Pythonin virtuaaliympäristö projektikansioon:
+
+```bash
+python3 -m venv venv
+```
+
+**4)** Käynnistä virtuaaliympäristö:
+
+```bash
+source venv/bin/activate
+```
+
+**5)** Ympäristön riippuvuudet löytyvät tiedostosta [requirements.txt](./requirements.txt). 
+Nämä voit asentaa kerralla:
+
+```bash
+pip install -r requirements.txt
+```
+
+**6)** Käytössä on Postgres-tietokanta. Skeema löytyy tiedostosta [schema.sql](./schema.sql). Pääset luomaan taulut tietokantaan:
+
+```bash
+psql < schema.sql
+```
+
+**7)** Tämän jälkeen pääset käynnistämään ohjelman virtuaaliympäristöstä:
+
+```bash
+flask run
