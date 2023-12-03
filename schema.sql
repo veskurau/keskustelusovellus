@@ -11,3 +11,8 @@ CREATE TABLE messages (
     user_id INTEGER REFERENCES users,
     sent_at TIMESTAMP
 );
+
+CREATE TABLE visitors (
+    id SERIAL PRIMARY KEY,
+    time TIMESTAMP
+);
