@@ -1,5 +1,5 @@
 <h1>Tervetuloa keskustelusovellukseen!</h1>
-Viestien määrä: {{ count }}
+Viestien määrä: {{ message_count }} / Sivulataukset: {{visits_count}} / Rekisteröityneet käyttäjät: {{users_count}}
 <hr>
 {% for message in messages %}
 <strong>Viesti: </strong>{{ message.content }}

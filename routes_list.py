@@ -2,12 +2,17 @@ from flask import render_template, request, redirect
 from app import app
 import messages
 import users
+import visits
 
 
 @app.route("/")
 def index():
+    visits.add_visit()
     messages_list = messages.get_list()
-    return render_template("index.html", count=len(messages_list), messages=messages_list)
+    visits_count = visits.get_counter()
+    users_count = users.get_counter()
+    return render_template("index.html", message_count=len(messages_list), messages=messages_list, visits_count=visits_count, users_count=users_count)
+
 
 @app.route("/new")
 def new():
