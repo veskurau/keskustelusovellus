@@ -19,7 +19,7 @@ def send():
     if messages.send(content):
         return redirect("/")
     else:
-        return render_template("error.html", message="Viestin lähetys ei onnistunut")
+        return render_template("error.html", message="Virhe viestin lähetyksessä")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():

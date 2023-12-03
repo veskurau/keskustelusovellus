@@ -2,7 +2,11 @@
 Viestien määrä: {{ count }}
 <hr>
 {% for message in messages %}
-{{ message.content }}
+<strong>Viesti: </strong>{{ message.content }}
+<p>
+<small>Lähettäjä: {{ message.username }}</small>
+<p>
+<small>Aika: {{ message.sent_at.strftime("%H:%M / %d.%m.%Y") }}</small>
 <hr>
 {% endfor %}
 {% if session.user_id %}
