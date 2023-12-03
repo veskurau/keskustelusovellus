@@ -16,6 +16,11 @@ def new():
 @app.route("/send", methods=["POST"])
 def send():
     content = request.form["content"]
+
+    # Check that message is in the correct form
+    error_message = error_message_for_messagetext(content)
+    if error_message:
+        return render_template("error.html", message=error_message)
     if messages.send(content):
         return redirect("/")
     else:
@@ -48,7 +53,31 @@ def register():
         password2 = request.form["password2"]
         if password1 != password2:
             return render_template("error.html", message="Salasanat eroavat")
+
+        # Check that username and password are in correct form
+        error_message = error_message_for_username_password(username, password1)
+        if error_message:
+            return render_template("error.html", message=error_message)
+
         if users.register(username, password1):
             return redirect("/")
         else:
             return render_template("error.html", message="Rekisteröinti ei onnistunut")
+
+
+def error_message_for_username_password(username, password):
+    if len(username) > 20 or len(password) > 20:
+        return "Käyttäjätunnus ja salasana voivat olla maksimissaan 20 merkkiä pitkä"
+    elif len(password) < 8:
+        return "Salasanan täytyy olla vähintään 8 merkkiä pitkä"
+    else:
+        return None
+
+def error_message_for_messagetext(message):
+    if len(message) > 1000:
+        return "Viesti saa olla maksimissaan 1000 merkkiä pitkä"
+    elif len(message) == 0:
+        return "Tyhjää viestiä ei voi lähettää"
+    else:
+        return None
+
