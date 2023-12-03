@@ -1,0 +1,13 @@
+.header {
+    background: rgb(209, 220, 88);
+    font-weight: bold;
+    padding: 1em 1em;
+    font-size: 2em;
+}
+
+.content {
+    background: rgb(195, 136, 25);
+    font-weight: normal;
+    padding: 1em 1em;
+    font-size: 1em;
+}

@@ -1,4 +1,19 @@
+<link rel="stylesheet" href="./static/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div class ="header">
 <h1>Tervetuloa keskustelusovellukseen!</h1>
+</div>
+<div class ="content">
+{% if session.user_id %}
+
+Olet kirjautunut sisään.
+<a href="/new">Lähetä viesti</a> | <a href="/logout">Kirjaudu ulos</a>
+{% else %}
+<a href="/login">Kirjaudu sisään</a>
+
+{% endif %}
+</div>
+<hr>
 Viestien määrä: {{ message_count }} / Sivulataukset: {{visits_count}} / Rekisteröityneet käyttäjät: {{users_count}}
 <hr>
 {% for message in messages %}
@@ -9,9 +24,3 @@ Viestien määrä: {{ message_count }} / Sivulataukset: {{visits_count}} / Rekis
 <small>Aika: {{ message.sent_at.strftime("%H:%M / %d.%m.%Y") }}</small>
 <hr>
 {% endfor %}
-{% if session.user_id %}
-Olet kirjautunut sisään.
-<a href="/new">Lähetä viesti</a> | <a href="/logout">Kirjaudu ulos</a>
-{% else %}
-<a href="/login">Kirjaudu sisään</a>
-{% endif %}
