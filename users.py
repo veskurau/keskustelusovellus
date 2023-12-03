@@ -31,3 +31,8 @@ def register(username, password):
     except:
         return False
     return login(username, password)
+
+def get_counter():
+    result = db.session.execute(text(("SELECT COUNT(*) FROM users")))
+    counter = result.fetchone()[0]
+    return counter
