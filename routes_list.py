@@ -75,6 +75,8 @@ def error_message_for_username_password(username, password):
         return "Käyttäjätunnus ja salasana voivat olla maksimissaan 20 merkkiä pitkä"
     elif len(password) < 8:
         return "Salasanan täytyy olla vähintään 8 merkkiä pitkä"
+    elif len(username) < 1:
+        return "Käyttäjätunnuksen täytyy olla vähintään 1 merkin pituinen"
     else:
         return None
 

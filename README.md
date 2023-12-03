@@ -24,18 +24,20 @@ Sovellus sisältää seuraavia ominaisuuksia:
 
 ## Sovelluksen nykyinen tilanne
 
-- Käyttäjä pystyy etusivulla näkemään lähetetyt viestit ja niiden määrän
+- Käyttäjä pystyy etusivulla näkemään lähetetyt viestit sekä niiden lähettäjän ja ajan
+- Käyttäjä näkee etusivulla viestien, sivulatausten ja rekisteröityneiden käyttäjien määrä
 - Käyttäjä pystyy luomaan uuden tunnuksen, joka koostuu käyttäjätunnuksesta ja salasanasta. Tunnus tallennetaan SQL tietokantaan
 - Käyttäjä pystyy kirjautumaan jo olemassa olevilla tunnuksilla
 - Jos annettu käyttäjätunnus tai salasana ei täsmää tietokannassa oleviin tietoihin, niin sivu antaa virheen
 - Mikäli käyttäjä yrittää luoda käyttäjätunnuksen joka löytyy jo tietokannasta, niin sivu antaa virheen
-- Tietokannassa on taulut users ja messages, joihin tallennetaan ja joista haetaan tietoa yllä listattujen toimintojen yhteydessä
+- Käyttäjätunnus ja salasanakentät ovat pakollisia, käyttäjä saa näistä huomautuksen, jos näitä ei ole syötetty
+- Liian pitkistä/lyhyistä salasanoista ja käyttäjätunnuksista annetaan virheilmoitus
+- Tietokannassa on taulut users, messages ja visits joihin tallennetaan ja joista haetaan tietoa yllä listattujen toimintojen yhteydessä
 
 ## Jatkokehitys
 
 - Lisätä tauluja tietokantaan
 - Tehdä tarkastuksia ja varmennuksia verkkosivujen kenttiin, että mitä tietoa käyttäjä voi niihin syöttää
-- Lisätä tietoa viesteihin, kuten lähettäjä ja aika
 - Parantaa sivujen ulkoasua
 - Luoda hakutoiminto
 - Luoda eri keskustelualueita
