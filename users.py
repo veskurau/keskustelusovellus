@@ -38,9 +38,13 @@ def get_counter():
     counter = result.fetchone()[0]
     return counter
 
-def is_admin(username):
-    sql = text("SELECT admin FROM users WHERE username=:username")
-    result = db.session.execute(sql, {"username":username})
-    user = result.fetchone()
-    print("user.admin:", user.admin)
-    return user.admin
+# HUOM TÄMÄ FUNKTIO ON VIELÄ TESTAAMATTA
+def is_admin():
+    if user_id(): # Tarkistaa onko kirjautunut sisään
+        sql = text("SELECT admin FROM users WHERE id=:user_id")
+        print("user_id funktio: ", user_id())
+        result = db.session.execute(sql, {"user_id":user_id()})
+        is_admin = result.fetchone()[0]
+        print(is_admin)
+        return is_admin # pitäisi palauttaa siis joko 0 tai 1
+    return False

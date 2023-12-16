@@ -11,13 +11,21 @@ def index():
     messages_list = messages.get_list()
     visits_count = visits.get_counter()
     users_count = users.get_counter()
-    return render_template("index.html", message_count=len(messages_list), messages=messages_list, visits_count=visits_count, users_count=users_count)
+    user_is_admin = users.is_admin()
+    return render_template("index.html", message_count=len(messages_list), messages=messages_list, visits_count=visits_count, users_count=users_count, user_is_admin=user_is_admin)
 
 
 @app.route("/new")
 def new():
     if users.user_id():
         return render_template("new.html")
+    else:
+        return redirect("/")
+
+@app.route("/topic")
+def topic():
+    if users.user_id():
+        return render_template("topic.html")
     else:
         return redirect("/")
 
