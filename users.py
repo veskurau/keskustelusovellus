@@ -38,7 +38,7 @@ def get_counter():
     counter = result.fetchone()[0]
     return counter
 
-# HUOM TÄMÄ FUNKTIO ON VIELÄ TESTAAMATTA
+
 def is_admin():
     if user_id(): # Tarkistaa onko kirjautunut sisään
         sql = text("SELECT admin FROM users WHERE id=:user_id")
@@ -46,5 +46,5 @@ def is_admin():
         result = db.session.execute(sql, {"user_id":user_id()})
         is_admin = result.fetchone()
         if is_admin:
-            return is_admin[0] # pitäisi palauttaa siis joko 0 tai 1
+            return is_admin[0]
     return 0

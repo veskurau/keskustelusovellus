@@ -1,10 +1,10 @@
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, url_for
 from app import app
 import messages
 import topics
 import users
 import visits
-
+import likes
 
 @app.route("/")
 def index():
@@ -35,15 +35,13 @@ def topic():
 
 @app.route("/send", methods=["POST"])
 def send():
-
-
     topic_name = request.form["topic_name"]
     content = request.form["content"]
     # Check that message is in the correct form
     error_message = error_message_for_messagetext(content)
     if error_message:
         return render_template("error.html", message=error_message)
-    if messages.send(content, topic_name): # TÄSSÄ NYT KOVAKOODAUS
+    if messages.send(content, topic_name):
         return redirect("/")
     else:
         return render_template("error.html", message="Virhe viestin lähetyksessä")
@@ -58,6 +56,11 @@ def create_topic():
         return redirect("/")
     else:
         return render_template("error.html", message="Virhe aihealueen luonnissa")
+
+@app.route("/like/<int:message_id>", methods=["POST"])
+def like(message_id):
+    likes.like(message_id)
+    return redirect(url_for("index"))
 
 
 @app.route("/login", methods=["GET", "POST"])
