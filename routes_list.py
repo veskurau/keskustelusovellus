@@ -16,7 +16,10 @@ def index():
 
 @app.route("/new")
 def new():
-    return render_template("new.html")
+    if users.user_id():
+        return render_template("new.html")
+    else:
+        return redirect("/")
 
 @app.route("/send", methods=["POST"])
 def send():
