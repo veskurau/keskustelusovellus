@@ -1,6 +1,6 @@
 <form action="/send" method="POST">
     Aihealue: <br>
-    <select name="topics">
+    <select name="topic_name">
         {% for topic in topics %}
         <option value="{{ topic.name }}">{{ topic.name }}</option>
         {% endfor %}

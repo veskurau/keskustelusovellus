@@ -44,7 +44,7 @@ def is_admin():
         sql = text("SELECT admin FROM users WHERE id=:user_id")
         print("user_id funktio: ", user_id())
         result = db.session.execute(sql, {"user_id":user_id()})
-        is_admin = result.fetchone()[0]
-        print(is_admin)
-        return is_admin # pitäisi palauttaa siis joko 0 tai 1
-    return False
+        is_admin = result.fetchone()
+        if is_admin:
+            return is_admin[0] # pitäisi palauttaa siis joko 0 tai 1
+    return 0

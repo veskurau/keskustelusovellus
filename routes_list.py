@@ -20,6 +20,8 @@ def index():
 def new():
     if users.user_id():
         topics_list = topics.get_list()
+        if not topics_list:
+            return render_template("error.html", message="Yhtään aihealuetta ei ole vielä luotu. Ylläpitäjän täytyy luoda ainakin yksi aihealue, jotta viestejä voi lähettää.")
         return render_template("new.html", topics=topics_list)
     else:
         return redirect("/")
@@ -33,13 +35,15 @@ def topic():
 
 @app.route("/send", methods=["POST"])
 def send():
-    content = request.form["content"]
 
+
+    topic_name = request.form["topic_name"]
+    content = request.form["content"]
     # Check that message is in the correct form
     error_message = error_message_for_messagetext(content)
     if error_message:
         return render_template("error.html", message=error_message)
-    if messages.send(content):
+    if messages.send(content, topic_name): # TÄSSÄ NYT KOVAKOODAUS
         return redirect("/")
     else:
         return render_template("error.html", message="Virhe viestin lähetyksessä")

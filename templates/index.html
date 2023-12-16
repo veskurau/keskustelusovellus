@@ -8,7 +8,7 @@
     OLETKO ADMIN: {{ user_is_admin }}
     Olet kirjautunut sisään.
     {% if user_is_admin %}
-        <a href="/new">Lähetä viesti</a> | <a href="/topic">Luo uusi aihealue</a> |<a href="/logout">Kirjaudu ulos</a>
+        <a href="/new">Lähetä viesti</a> | <a href="/topic">Luo uusi aihealue</a> | <a href="/logout">Kirjaudu ulos</a>
     {% else %}
         <a href="/new">Lähetä viesti</a> | <a href="/logout">Kirjaudu ulos</a>
     {% endif %}
@@ -23,7 +23,9 @@ Viestien määrä: {{ message_count }} / Sivulataukset: {{visits_count}} / Rekis
 <strong>Viesti: </strong>{{ message.content }}
 <p>
 <small>Lähettäjä: {{ message.username }}</small>
-<p>
+--
+<small>Aihealue: {{ message.name }}</small>
+--
 <small>Aika: {{ message.sent_at.strftime("%H:%M / %d.%m.%Y") }}</small>
 <hr>
 {% endfor %}

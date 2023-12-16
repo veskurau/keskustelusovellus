@@ -15,3 +15,14 @@ def create_topic(topic):
     db.session.execute(sql, {"name":topic, "user_id":user_id})
     db.session.commit()
     return True
+
+def get_id(topic_name):
+    sql = text("SELECT id FROM topics WHERE name=:topic_name")
+    result = db.session.execute(sql, {"topic_name":topic_name})
+    topic_id = result.fetchone()
+    print(topic_id)
+    if not topic_id:
+        return False
+    else:
+        return topic_id[0]
+    
