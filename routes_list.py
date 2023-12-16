@@ -19,7 +19,8 @@ def index():
 @app.route("/new")
 def new():
     if users.user_id():
-        return render_template("new.html")
+        topics_list = topics.get_list()
+        return render_template("new.html", topics=topics_list)
     else:
         return redirect("/")
 
