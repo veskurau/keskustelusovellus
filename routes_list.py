@@ -1,6 +1,7 @@
 from flask import render_template, request, redirect
 from app import app
 import messages
+import topics
 import users
 import visits
 
@@ -41,6 +42,18 @@ def send():
         return redirect("/")
     else:
         return render_template("error.html", message="Virhe viestin lähetyksessä")
+
+@app.route("/create_topic", methods=["POST"])
+def create_topic():
+    topic = request.form["topic"]
+    error_message = error_message_for_topic(topic)
+    if error_message:
+        return render_template("error.html", message=error_message)
+    if topics.create_topic(topic):
+        return redirect("/")
+    else:
+        return render_template("error.html", message="Virhe aihealueen luonnissa")
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -101,3 +114,10 @@ def error_message_for_messagetext(message):
     else:
         return None
 
+def error_message_for_topic(topic):
+    if len(topic) > 30:
+        return "Aihealue saa olla maksimissaan 30 merkkiä pitkä"
+    elif len(topic) == 0:
+        return "Tyhjää viestiä ei voi lähettää"
+    else:
+        return None
