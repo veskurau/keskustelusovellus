@@ -59,6 +59,8 @@ def register():
         username = request.form["username"]
         password1 = request.form["password1"]
         password2 = request.form["password2"]
+        admin = int(request.form["admin"])
+
         if password1 != password2:
             return render_template("error.html", message="Salasanat eroavat")
 
@@ -67,7 +69,7 @@ def register():
         if error_message:
             return render_template("error.html", message=error_message)
 
-        if users.register(username, password1):
+        if users.register(username, password1, admin):
             return redirect("/")
         else:
             return render_template("error.html", message="Rekisteröinti ei onnistunut")
