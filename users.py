@@ -37,3 +37,10 @@ def get_counter():
     result = db.session.execute(text(("SELECT COUNT(*) FROM users")))
     counter = result.fetchone()[0]
     return counter
+
+def is_admin(username):
+    sql = text("SELECT admin FROM users WHERE username=:username")
+    result = db.session.execute(sql, {"username":username})
+    user = result.fetchone()
+    print("user.admin:", user.admin)
+    return user.admin
