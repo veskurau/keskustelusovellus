@@ -28,7 +28,7 @@ def new():
 
 @app.route("/topic")
 def topic():
-    if users.user_id():
+    if users.user_id() and users.is_admin():
         return render_template("topic.html")
     else:
         return redirect("/")
@@ -38,7 +38,7 @@ def send():
     check_csrf_token()
     topic_name = request.form["topic_name"]
     content = request.form["content"]
-    # Check that message is in the correct form
+
     error_message = error_message_for_messagetext(content)
     if error_message:
         return render_template("error.html", message=error_message)
@@ -95,7 +95,6 @@ def register():
         if password1 != password2:
             return render_template("error.html", message="Salasanat eroavat")
 
-        # Check that username and password are in correct form
         error_message = error_message_for_username_password(username, password1)
         if error_message:
             return render_template("error.html", message=error_message)

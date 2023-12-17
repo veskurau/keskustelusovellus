@@ -5,7 +5,6 @@
 </div>
 <div class ="content">
 {% if session.user_id %}
-    OLETKO ADMIN: {{ user_is_admin }}
     Olet kirjautunut sisään.
     {% if user_is_admin %}
         <a href="/new">Lähetä viesti</a> | <a href="/topic">Luo uusi aihealue</a> | <a href="/logout">Kirjaudu ulos</a>
