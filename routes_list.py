@@ -74,7 +74,10 @@ def search():
 
 @app.route("/filter_by_topic")
 def filter_by_topic():
+    print(request.args["filter_by_topic"])
     topic = request.args["filter_by_topic"]
+    if topic == "None":
+        return redirect("/")
     user_is_admin = users.is_admin()
     filter_result = messages.filter_by_topic(topic)
     return render_template("search.html", messages=filter_result, user_is_admin=user_is_admin)
