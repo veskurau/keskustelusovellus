@@ -21,16 +21,19 @@
 </div>
 <p>
 
-<form action="/register" method="POST">
-Käyttäjätunnus: <input type="text" name="username" required>
-<p>
-Salasana: <input type="password" name="password1" required>
-<p>
-Salasana uudestaan: <input type="password" name="password2" required>
-<p>
-Ylläpitäjän rooli: 
-<input type="radio" name="admin" value="1"> Kyllä 
-<input type="radio" name="admin" value="0" checked> Ei
-<p></p>
-<input type="submit" value="Luo käyttäjätunnus">
-</form>
+
+<div class ="forms">    
+    <form action="/register" method="POST">
+    Käyttäjätunnus:<br> <input type="text" name="username" required>
+    <p>
+    Salasana:<br><input type="password" name="password1" required>
+    <p>
+    Salasana uudestaan:<br> <input type="password" name="password2" required>
+    <p>
+    Ylläpitäjän rooli: 
+    <input type="radio" name="admin" value="1"> Kyllä 
+    <input type="radio" name="admin" value="0" checked> Ei
+    <p></p>
+    <input type="submit" value="Luo käyttäjätunnus">
+    </form>
+</div>

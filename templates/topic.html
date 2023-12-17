@@ -20,12 +20,13 @@
     Luo uusi aihealue
 </div>
 <p>
-
-<form action="/create_topic" method="POST">
-    Aihealue:<br>
-    <input type="text" name="topic" required>
-    <br>
-    <input type="submit" value="Luo">
-    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-</form>
+<div class ="forms">
+    <form action="/create_topic" method="POST">
+        Aihealue:<br>
+        <input type="text" name="topic" required>
+        <p>
+        <input type="submit" value="Luo">
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    </form>
+</div>
     

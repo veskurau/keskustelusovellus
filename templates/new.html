@@ -21,18 +21,20 @@
 </div>
 <p>
 
-<form action="/send" method="POST">
-    Aihealue: <br>
-    <select name="topic_name">
-        {% for topic in topics %}
-        <option value="{{ topic.name }}">{{ topic.name }}</option>
-        {% endfor %}
-    </select>
-<br>
-<br>
-Viesti: <br>
-<textarea name="content" rows="3" cols="40"></textarea>
-<br>
-<input type="submit" value="Lähetä">
-<input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-</form>
+<div class ="forms">
+    <form action="/send" method="POST">
+        Aihealue: <br>
+        <select name="topic_name">
+            {% for topic in topics %}
+            <option value="{{ topic.name }}">{{ topic.name }}</option>
+            {% endfor %}
+        </select>
+    <br>
+    <br>
+    Viesti: <br>
+    <textarea name="content" rows="3" cols="30"></textarea>
+    <p>
+    <input type="submit" value="Lähetä">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    </form>
+</div>

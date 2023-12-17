@@ -17,29 +17,30 @@
 </div>
 <hr>
 <div class ="lowercontent">
-    Kaikki viestit
+    Kaikki viestit | <small>Viestien määrä: {{ message_count }} / Sivulataukset: {{visits_count}} / Rekisteröityneet käyttäjät: {{users_count}}</small>
 </div>
 <hr>
-Viestien määrä: {{ message_count }} / Sivulataukset: {{visits_count}} / Rekisteröityneet käyttäjät: {{users_count}}
-<hr>
 
-<form action="/search" method="GET">
-    Hae hakusanalla:<input type="text" name="query">
-    <br>
-    <input type="submit" value="Hae">
-</form>
 
-<form action="/filter_by_topic" method="GET">
-    Hae aihelue: <br>
-    <select name="filter_by_topic">
-        {% for topic in topics %}
-        <option value="{{ topic.name }}">{{ topic.name }}</option>
-        {% endfor %}
-    </select>
-    <br>
-    <input type="submit" value="Hae">
-</form>
+<div class ="search">
+    <strong>Hakutoiminnot</strong>
+    <p>
+    <form action="/search" method="GET">
+        Hakusana:<br>
+        <input type="text" name="query">        
+        <input type="submit" value="Hae">
+    </form>
 
+    <form action="/filter_by_topic" method="GET">
+        Aihelue: <br>
+        <select name="filter_by_topic">
+            {% for topic in topics %}
+            <option value="{{ topic.name }}">{{ topic.name }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Hae">
+    </form>
+</div>
 
 {% for message in messages %}
     <strong>Viesti: </strong>{{ message.content }}

@@ -18,3 +18,33 @@
     padding: 1em 1em;
     font-size: 1em;
 }
+
+.search {
+    background: rgb(18, 145, 174);
+    font-weight: normal;
+    padding: 1em;
+    font-size: 1em;
+    width: 300px; 
+    margin-left: auto; 
+    box-sizing: border-box; 
+    border: 1px solid #ccc; 
+}
+
+.search form {
+    margin-bottom: 10px;
+}
+
+.forms {
+    background: rgb(212, 194, 60);
+    font-weight: normal;
+    padding: 1em;
+    font-size: 1em;
+    width: 300px; 
+    margin: left; 
+    box-sizing: border-box; 
+    border: 1px solid #ccc; 
+}
+
+.forms form {
+    margin-bottom: 10px;
+}
