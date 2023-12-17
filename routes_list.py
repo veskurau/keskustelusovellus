@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, session, url_for, abort
 from app import app
 import messages
 import topics
@@ -35,6 +35,7 @@ def topic():
 
 @app.route("/send", methods=["POST"])
 def send():
+    check_csrf_token()
     topic_name = request.form["topic_name"]
     content = request.form["content"]
     # Check that message is in the correct form
@@ -48,6 +49,7 @@ def send():
 
 @app.route("/create_topic", methods=["POST"])
 def create_topic():
+    check_csrf_token()
     topic = request.form["topic"]
     error_message = error_message_for_topic(topic)
     if error_message:
@@ -129,3 +131,7 @@ def error_message_for_topic(topic):
         return "Tyhjää viestiä ei voi lähettää"
     else:
         return None
+
+def check_csrf_token():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
