@@ -27,5 +27,11 @@ def search(query):
     sql = text("SELECT id, content, user_id, topic_id, sent_at, like_count FROM messages WHERE content LIKE :query")
     result = db.session.execute(sql, {"query":"%"+query+"%"})
     search_result = result.fetchall()
-    print(f"search_results: {search_result}")
+    return search_result
+
+def filter_by_topic(topic):
+    topic_id = topics.get_id(topic)
+    sql = text("SELECT id, content, user_id, topic_id, sent_at, like_count FROM messages WHERE topic_id=:topic_id")
+    result = db.session.execute(sql, {"topic_id":topic_id})
+    search_result = result.fetchall()
     return search_result
