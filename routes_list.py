@@ -16,7 +16,6 @@ def index():
     topics_list = topics.get_list()
     return render_template("index.html", message_count=len(messages_list), messages=messages_list, visits_count=visits_count, users_count=users_count, user_is_admin=user_is_admin, topics=topics_list)
 
-
 @app.route("/new")
 def new():
     if users.user_id():
@@ -41,7 +40,6 @@ def send():
     check_csrf_token()
     topic_name = request.form["topic_name"]
     content = request.form["content"]
-
     error_message = error_message_for_messagetext(content)
     if error_message:
         return render_template("error.html", message=error_message)
@@ -80,7 +78,6 @@ def filter_by_topic():
     user_is_admin = users.is_admin()
     filter_result = messages.filter_by_topic(topic)
     return render_template("search.html", messages=filter_result, user_is_admin=user_is_admin)
-
 
 @app.route("/login", methods=["GET", "POST"])
 def login():

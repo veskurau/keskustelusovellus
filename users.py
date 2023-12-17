@@ -40,7 +40,6 @@ def get_counter():
     counter = result.fetchone()[0]
     return counter
 
-
 def is_admin():
     if user_id():
         sql = text("SELECT admin FROM users WHERE id=:user_id")

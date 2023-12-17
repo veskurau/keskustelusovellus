@@ -1,19 +1,19 @@
 <link rel="stylesheet" href="./static/style.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <div class ="header">
-<h1>Keskustelusovellus</h1>
+    <h1>Keskustelusovellus</h1>
 </div>
 <div class ="content">
-{% if session.user_id %}
-    Olet kirjautunut sisään.
-    {% if user_is_admin %}
-        <a href="/new">Lähetä viesti</a> | <a href="/topic">Luo uusi aihealue</a> | <a href="/">Palaa etusivulle</a> | <a href="/logout">Kirjaudu ulos</a>
+    {% if session.user_id %}
+        Olet kirjautunut sisään.
+        {% if user_is_admin %}
+            <a href="/new">Lähetä viesti</a> | <a href="/topic">Luo uusi aihealue</a> | <a href="/">Palaa etusivulle</a> | <a href="/logout">Kirjaudu ulos</a>
+        {% else %}
+            <a href="/new">Lähetä viesti</a> | <a href="/">Palaa etusivulle</a> | <a href="/logout">Kirjaudu ulos</a>
+        {% endif %}
     {% else %}
-        <a href="/new">Lähetä viesti</a> | <a href="/">Palaa etusivulle</a> | <a href="/logout">Kirjaudu ulos</a>
+        <a href="/login">Kirjaudu sisään</a>
     {% endif %}
-{% else %}
-    <a href="/login">Kirjaudu sisään</a>
-{% endif %}
 </div>
 <hr>
 <div class ="lowercontent">
@@ -24,16 +24,16 @@
 
 <div class ="forms">    
     <form action="/register" method="POST">
-    Käyttäjätunnus:<br> <input type="text" name="username" required>
-    <p>
-    Salasana:<br><input type="password" name="password1" required>
-    <p>
-    Salasana uudestaan:<br> <input type="password" name="password2" required>
-    <p>
-    Ylläpitäjän rooli: 
-    <input type="radio" name="admin" value="1"> Kyllä 
-    <input type="radio" name="admin" value="0" checked> Ei
-    <p></p>
-    <input type="submit" value="Luo käyttäjätunnus">
+        Käyttäjätunnus:<br> <input type="text" name="username" required>
+        <p>
+        Salasana:<br><input type="password" name="password1" required>
+        <p>
+        Salasana uudestaan:<br> <input type="password" name="password2" required>
+        <p>
+        Ylläpitäjän rooli: 
+        <input type="radio" name="admin" value="1"> Kyllä 
+        <input type="radio" name="admin" value="0" checked> Ei
+        <p>
+        <input type="submit" value="Luo käyttäjätunnus">
     </form>
 </div>
