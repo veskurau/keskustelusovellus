@@ -11,3 +11,10 @@
     padding: 1em 1em;
     font-size: 1em;
 }
+
+.lowercontent {
+    background: rgb(119, 174, 17);
+    font-weight: bold;
+    padding: 1em 1em;
+    font-size: 1em;
+}

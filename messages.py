@@ -22,3 +22,10 @@ def update_like_count(message_id):
     sql = text("UPDATE messages SET like_count = (SELECT COUNT(*) FROM likes WHERE message_id=:message_id) WHERE id=:message_id")
     db.session.execute(sql, {"message_id":message_id})
     db.session.commit()
+
+def search(query):
+    sql = text("SELECT id, content, user_id, topic_id, sent_at, like_count FROM messages WHERE content LIKE :query")
+    result = db.session.execute(sql, {"query":"%"+query+"%"})
+    search_result = result.fetchall()
+    print(f"search_results: {search_result}")
+    return search_result

@@ -20,16 +20,18 @@ def index():
 def new():
     if users.user_id():
         topics_list = topics.get_list()
+        user_is_admin = users.is_admin()
         if not topics_list:
             return render_template("error.html", message="Yhtään aihealuetta ei ole vielä luotu. Ylläpitäjän täytyy luoda ainakin yksi aihealue, jotta viestejä voi lähettää.")
-        return render_template("new.html", topics=topics_list)
+        return render_template("new.html", topics=topics_list, user_is_admin=user_is_admin)
     else:
         return redirect("/")
 
 @app.route("/topic")
 def topic():
-    if users.user_id() and users.is_admin():
-        return render_template("topic.html")
+    user_is_admin = users.is_admin()
+    if users.user_id() and user_is_admin:
+        return render_template("topic.html", user_is_admin=user_is_admin)
     else:
         return redirect("/")
 
@@ -63,6 +65,13 @@ def create_topic():
 def like(message_id):
     likes.like(message_id)
     return redirect(url_for("index"))
+
+@app.route("/search")
+def search():
+    query = request.args["query"]
+    user_is_admin = users.is_admin()
+    search_result = messages.search(query)
+    return render_template("search.html", messages=search_result, user_is_admin=user_is_admin)
 
 
 @app.route("/login", methods=["GET", "POST"])

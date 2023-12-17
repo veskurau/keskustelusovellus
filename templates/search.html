@@ -17,15 +17,22 @@
 </div>
 <hr>
 <div class ="lowercontent">
-    Kirjaudu sisään
+Hakutuloksesi:
 </div>
 <p>
-<form action="/login" method="POST">
-Käyttäjätunnus: <input type="text" name="username" required>
-<p>
-Salasana: <input type="password" name="password" required>
-<p>
-<input type="submit" value="Kirjaudu">
-</form>
-
-Jos et ole vielä rekisteröitynyt, voi rekisteröityä <a href="/register">täältä</a>
+{% for message in messages %}
+    <strong>Viesti: </strong>{{ message.content }}
+    <p>
+    <small>Lähettäjä: {{ message.username }}</small>
+    --
+    <small>Aihealue: {{ message.name }}</small>
+    --
+    <small>Aika: {{ message.sent_at.strftime("%H:%M / %d.%m.%Y") }}</small>
+    --
+    <small>Tykkäykset: {{ message.like_count }}</small>
+    
+    <form action="{{ url_for('like', message_id=message.id) }}" method="POST">
+        <input type="submit" value="Tykkää">
+    </form> 
+    <hr>
+{% endfor %}

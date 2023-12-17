@@ -1,5 +1,28 @@
+<link rel="stylesheet" href="./static/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div class ="header">
+<h1>Keskustelusovellus</h1>
+</div>
+<div class ="content">
+{% if session.user_id %}
+    Olet kirjautunut sisään.
+    {% if user_is_admin %}
+        <a href="/new">Lähetä viesti</a> | <a href="/topic">Luo uusi aihealue</a> | <a href="/">Palaa etusivulle</a> | <a href="/logout">Kirjaudu ulos</a>
+    {% else %}
+        <a href="/new">Lähetä viesti</a> | <a href="/">Palaa etusivulle</a> | <a href="/logout">Kirjaudu ulos</a>
+    {% endif %}
+{% else %}
+    <a href="/login">Kirjaudu sisään</a>
+{% endif %}
+</div>
+<hr>
+<div class ="lowercontent">
+    Luo uusi aihealue
+</div>
+<p>
+
 <form action="/create_topic" method="POST">
-    Uusi aihealue: <br>
+    Aihealue:<br>
     <input type="text" name="topic" required>
     <br>
     <input type="submit" value="Luo">
